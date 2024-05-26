@@ -1,11 +1,12 @@
 import express from "express"
-import userRouter from "./routes/user.routes.js"
 import { dbConnect } from "./database/dbConfig.js";
 import dotenv from "dotenv"
+import cookieParser from "cookie-parser";
+
+import userRouter from "./routes/user.routes.js"
+import chatRouter from "./routes/chat.routes.js"
 
 const dot = dotenv.config();
-// console.log(dot.error);
-// console.log(dot.parsed);
 
 
 const port  = process.env.PORT || 3000
@@ -13,8 +14,10 @@ const port  = process.env.PORT || 3000
 const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+app.use(cookieParser());
 
 app.use('/user',userRouter);
+app.use('/chat',chatRouter);
 
 app.listen(port,()=>{
     dbConnect();

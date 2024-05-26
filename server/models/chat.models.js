@@ -1,5 +1,6 @@
-import { Schema, Types, model, models } from "mongoose";
-
+import mongoose from "mongoose";
+const { Schema, model , Types } = mongoose;
+const models = mongoose.models;
 
 const chatSchema = new Schema ({
     name : {
